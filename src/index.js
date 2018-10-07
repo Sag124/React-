@@ -10,20 +10,20 @@ registerServiceWorker();
 // const name = "jack";
 // const element = <h1>Hello, {name}</h1>;
 
-function formatName(user) {
-	return user.firstName + ' ' + user.lastName;
-}
+// function formatName(user) {
+// 	return user.firstName + ' ' + user.lastName;
+// }
 
-const user = {
-	firstName: 'jack',
-	lastName: 'john'
-};
+// const user = {
+// 	firstName: 'jack',
+// 	lastName: 'john'
+// };
 
-const element = (
-	<h1>
-	Hello, {formatName(user)}!
-	</h1>
-	);
+// const element = (
+// 	<h1>
+// 	Hello, {formatName(user)}!
+// 	</h1>
+// 	);
 
 // function getGreeting(user) {
 // 	if (user) {
@@ -34,7 +34,7 @@ const element = (
 // }
 
 
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
+// ReactDOM.render(
+//   element,
+//   document.getElementById('root')
+// );
