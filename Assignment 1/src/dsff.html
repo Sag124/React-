@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--third-party styles-->
+	<link rel="stylesheet" href="./pure-min.css">
+	<link rel="stylesheet" href="./grids-responsive-min.css">
+	<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+	<!-- End third-party styles -->
+	<script src="canvasini-onbutton.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>Evive Health</title>
+	<style>
+		.spinner {
+			margin: 0px auto ;
+			width: 70px;
+			text-align: center;
+		}
+
+		.spinner > div {
+			width: 18px;
+			height: 18px;
+			background-color: #333;
+
+			border-radius: 100%;
+			display: inline-block;
+			-webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+			animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+		}
+
+		.spinner .bounce1 {
+			-webkit-animation-delay: -0.32s;
+			animation-delay: -0.32s;
+		}
+
+		.spinner .bounce2 {
+			-webkit-animation-delay: -0.16s;
+			animation-delay: -0.16s;
+		}
+
+		@-webkit-keyframes sk-bouncedelay {
+			0%, 80%, 100% { -webkit-transform: scale(0) }
+			40% { -webkit-transform: scale(1.0) }
+		}
+
+		@keyframes sk-bouncedelay {
+			0%, 80%, 100% {
+				-webkit-transform: scale(0);
+				transform: scale(0);
+			} 40% {
+				  -webkit-transform: scale(1.0);
+				  transform: scale(1.0);
+			  }
+		}
+	</style>
+</head>
+<body style="margin:0px;" onload="init();">
+	<div id="layout"> <!-- Container div -->
+
+		<div id="loadingScreen" style="background: rgba(255, 255, 255, 0.93); position: fixed; height: 100%; width: 100%;">
+			<div class="" style="position: absolute; top: 50%; transform: translateY(-50%)translateX(-50%);left: 50%;">
+				<div class="spinner">
+					<div class="bounce1"></div>
+					<div class="bounce2"></div>
+					<div class="bounce3"></div>
+				</div>
+				Loading
+			</div>
+		</div>
+
+		<div id="main"> <!-- Main Section -->
+			<div class="e-red-bg">
+				<div class="content headerArea full-width">
+					<div class="pure-g">
+						<div class="pure-u-1">
+							<div class="padding-none">
+
+								<div class="card-unit">
+									<div class="card-content">
+										<h1 class="white-txt super-txt">Can you identify stress? <p class="white-txt"><br/>Take the 'Get Me Off the Stress Bus' interactive quiz to find out.</p></h1>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="content full-width">
+
+				<div class="pure-g">
+					<div class="pure-u-lg-1" >
+						<div class="padding-side-right-md">
+							<div class="card-unit equal-height">
+								<div class="card-content">
+									<!-- <h1 class="ion-android-favorite e-teal-txt"></h1> -->
+									<h2 class="e-teal-txt">1. Interactive quiz<p>Identify the stress symptoms in yourself and test how well you can spot stress in other people.</p></h2><p>Required for checklist credit.</p>
+									<div id="quiz" class="top-padding-sm bottom-padding-sm"><button id="quizbutton" class="e-red-bg-hover center">Take the quiz</button></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="pure-u-lg-1">
+						<div class="card-unit equal-height">
+							<div class="card-content">
+								<!-- <h1 class="ion-android-home e-teal-txt"></h1> -->
+								<h2 class="e-teal-txt">2. Get help managing your stress<p>Our texting service will send you weekly stress advice to help you breathe easier.</p></h2><p>Optional stress advice tool.</p>
+
+								<form class="pure-form pure-form-stacked">
+									<fieldset>
+										<div class="pure-control-group">
+											<label for="name">Phone number*</label>
+											<input id="phone" type="text" placeholder="000-000-0000" required>
+											<span class="pure-form-message-inline">This is a required field.</span>
+										</div>
+
+										<div class="pure-control-group">
+											<label for="confirm">Confirm</label>
+											<input id="confirm-phone" type="text" placeholder="000-000-0000" required>
+											<span class="pure-form-message-inline">This is a required field.</span>
+										</div>
+										<div class="pure-controls">
+											<!-- <label for="cb" class="pure-checkbox">
+												<input id="cb" type="checkbox" required> I accept the <a href="">terms and conditions</a>.
+											</label> -->
+											<div class="top-padding-sm bottom-padding-sm"><button id="submit-phone" type="submit" class="e-red-bg-hover center">Sign up for tips</button></div>
+											<p id="phone-submit-response">
+											</p>
+										</div>
+									</fieldset>
+								</form>
+
+
+								<p class="small-txt no-margin padding-none">*Standard text messaging rates may apply. Please check with your provider.</p>
+
+							</div>
+
+						</div>
+					</div>
+					<div id="canvasContainer">
+						<canvas id="canvas" class="displayNone" width="483" height="255" style="display: none; background:none;"></canvas>
+						<div id='_preload_div_' class="displayNone" style='display: inline-block; height:255px; width: 483px; vertical-align=middle;position:absolute;text-align: center;'>	<span style='display: inline-block; height: 100%; vertical-align: middle;'></span>	<img src=images/_preloader.gif?1485366813521 style='vertical-align: middle; max-height: 100%'/></div>
+						<div id="scrim" class="displayNone"></div>
+					</div>
+				</div>
+			</div>
+		</div> <!-- Main Section -->
+	</div> <!-- End Container div -->
+
+	<footer><div class="top-padding bottom-padding"><!-- Header Section -->
+		<div class="pure-g content">
+			<!-- <div class="pure-u-lg-3-24">
+				<img width="100px" class="pure-img padding-bottom-sm" src="images/logo_yourcompany.png">
+			</div> -->
+			<!-- <div class="pure-u-lg-21-24">
+				<p class="small-txt no-margin padding-none">*Standard text messaging rates may apply. Please check with your provider.</p>
+				<p class="small-txt">&#x24B8; 2017 Evive Health, LLC.</p>
+			</div> -->
+		</div>
+
+	</div> <!-- End Header Section --></footer>
+
+	<!-- Third-party JS for menu on this guide -->
+	<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.1/inputmask/inputmask.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.1/inputmask/jquery.inputmask.min.js"></script>
+	<!-- End third-party JS -->
+	<script src="main.js"></script>
+	<script src="canvasGlobal.js"></script>
+	<script src="test.js"></script>
+	<script src="canvas.js?1485360973313">
+		(function(){
+			"use strict";
+		})();
+	</script>
+
+
+</body>
+</html>
